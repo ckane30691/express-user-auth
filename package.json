@@ -1,0 +1,27 @@
+{
+  "name": "expressAuth",
+  "version": "1.0.0",
+  "description": "A reference guide for implementing auth using jsonwebtokens",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckane30691/express-user-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckane30691/express-user-auth/issues"
+  },
+  "homepage": "https://github.com/ckane30691/express-user-auth#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "morgan": "^1.9.0"
+  }
+}
