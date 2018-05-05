@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ckane30691/express-user-auth#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "convict": "^4.2.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",

@@ -31,3 +31,11 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
+
+//routes
+require('./app/routes.js')(app);
+
+const port = config.get('http.port');
+app.listen(port, () => {
+    console.log('Server listening on port ' + port);
+});
