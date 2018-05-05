@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const config = require('./config/config');
 
 if (!process.env.JWT_SECRET) {
   console.error(
