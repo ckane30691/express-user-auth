@@ -1,15 +1,35 @@
-const convict = require('convict');
+const jwt = require('jsonwebtoken');
+const _ = require('lodash');
 
-const config = convict({
-    http: {
-        port: {
-            doc: 'The port to listen on',
-            default: 3000,
-            env: 'PORT'
-        }
-    },
-});
+function createJWToken(details) {
+  if (typeof details !== 'object')
+  {
+    details = {};
+  }
 
-config.validate();
+  if (!details.maxAge || typeof details.maxAge !== 'number')
+  {
+    details.maxAge = 3600;
+  }
 
-module.exports = config;
+  details.sessionData = _.reduce(details.sessionData || {}, (memo, val, key) => {
+    if (typeof val !== "function" && key !== "password")
+    {
+      memo[key] = val;
+    }
+    return memo;
+  }, {});
+
+  let token = jwt.sign({
+     data: details.sessionData
+    }, process.env.JWT_SECRET, {
+      expiresIn: details.maxAge,
+      algorithm: 'HS256'
+  });
+
+  return token;
+}
+
+module.exports = {
+  createJWToken,
+};
