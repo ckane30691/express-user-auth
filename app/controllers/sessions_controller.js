@@ -50,3 +50,34 @@ module.exports = {
       }
   }
 };
+
+// controller helper functions
+function login(req, res, user) {
+  res.locals = { currentUser: user };
+  return db.users.resetSessionToken(user).then(token => token);
+}
+
+function logout(res, user) {
+  res.locals = { currentUser: null };
+  db.users.resetSessionToken(user);
+}
+
+function currentUser(req, res, token) {
+  if (res.locals.currentUser) {
+    return Promise.resolve(res.locals.currentUser);
+  } else {
+    return db.users.findBySessionToken(token).then(user => {
+      if (user === null) {
+        res.locals = {currentUser: null};
+        return Promise.resolve(null);
+      } else {
+        res.locals = {currentUser: user};
+        return res.locals.currentUser;
+      }
+    });
+  }
+}
+
+function isLoggedIn(req, res, token) {
+  return currentUser(req, res, token) === null ? false : true;
+}
