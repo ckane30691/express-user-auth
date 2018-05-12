@@ -30,4 +30,17 @@ class Users {
         return Promise.resolve(null);
       }
     }
+
+    save(user, token) {
+      user.sessionToken = token;
+      if (user.name !== undefined
+        && user.email !== undefined
+        && user.sessionToken !== ''
+        && user.passwordDigest !== undefined) {
+          this.add(user);
+          return true;
+        } else {
+          return false;
+        }
+      }
 }
