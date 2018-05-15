@@ -43,4 +43,11 @@ class Users {
           return false;
         }
       }
+
+      // Creates the user table in a blank db;
+    createTable() {
+        return this.db.none(sql.create);
+    }
+
+    
 }
