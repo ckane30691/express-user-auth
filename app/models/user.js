@@ -49,5 +49,9 @@ class Users {
         return this.db.none(sql.create);
     }
 
-    
+    isDuplicateUser(user) {
+      return this.findByEmail(user.email).then(dupUser => {
+        return dupUser !== null ? true : false;
+      });
+    }
 }
