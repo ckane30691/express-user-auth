@@ -54,4 +54,21 @@ class Users {
         return dupUser !== null ? true : false;
       });
     }
+
+    //validates input and looks up user by email and password
+    findByCredentials(email, password) {
+      if (this.validatePasswordFormat(password) === true &&
+      this.validateEmailFormat(email) === true) {
+        return this.findByEmail(email)
+        .then(user => {
+          if (user === null) {
+            return null;
+          } else {
+            return this.isPassword(password, user) ? user : null;
+          }
+        });
+      } else {
+        return Promise.resolve(null);
+      }
+    }
 }
