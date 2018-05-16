@@ -92,4 +92,20 @@ class Users {
       user.sessionToken = token;
       return this.update(user, token).then(() => token);
     }
+
+    // Plain text passwords bad, hashed & salted passwords good
+    setPassword(password) {
+      return bcrypt.hashSync(password, saltRounds);
+    }
+
+    //checks if a password matches the pword hash saved
+    isPassword(password, user) {
+      if (user.passworddigest !== undefined) {
+        return bcrypt.compare(password, user.passworddigest).then(res => {
+          return res == true;
+        });
+      } else {
+        return false;
+      }
+    }
 }
