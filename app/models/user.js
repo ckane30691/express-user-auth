@@ -78,4 +78,12 @@ class Users {
       if (password.length < 7) return false;
       return true;
     }
+
+    // regex taken from http://emailregex.com/
+    validateEmailFormat(email) {
+      if (email === undefined) return false;
+      return(
+        email.search(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) === -1 ? false : true
+      );
+    }
 }
