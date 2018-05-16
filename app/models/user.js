@@ -71,4 +71,11 @@ class Users {
         return Promise.resolve(null);
       }
     }
+
+    // password must be longer than 7 characters
+    validatePasswordFormat(password) {
+      if (password === undefined) return false;
+      if (password.length < 7) return false;
+      return true;
+    }
 }
