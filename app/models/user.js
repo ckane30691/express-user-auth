@@ -108,4 +108,21 @@ class Users {
         return false;
       }
     }
+
+    findBySessionToken(token) {
+      return this.db.oneOrNone('SELECT * FROM users WHERE sessiontoken = $1', token)
+      .catch(err => {
+        console.log(err);
+      });
+    }
+
+    // Tries to find a user from name
+    findByEmail(email) {
+      return this.db.oneOrNone('SELECT * FROM users WHERE email = $1', email);
+    }
+
+    // Tries to find a user from id;
+    findById(id) {
+        return this.db.oneOrNone('SELECT * FROM users WHERE id = $1', +id);
+    }
 }
