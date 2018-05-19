@@ -162,3 +162,5 @@ class Users {
         return this.db.one('SELECT count(*) FROM users', [], a => +a.count);
     }
 }
+
+module.exports = Users;
