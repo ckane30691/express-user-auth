@@ -125,4 +125,40 @@ class Users {
     findById(id) {
         return this.db.oneOrNone('SELECT * FROM users WHERE id = $1', +id);
     }
+
+
+    // Drops the user table from db;
+    dropTable() {
+        return this.db.none(sql.drop);
+    }
+
+    // Removes all records from the user table;
+    emptyTable() {
+        return this.db.none(sql.empty);
+    }
+
+    // Updates an existing users attributes
+    update(user, token) {
+      return this.db.result('UPDATE users SET sessiontoken = $1 WHERE email = $2 RETURNING sessiontoken', [token, user.email]).then(result => console.log("Result from db", result));
+    }
+
+    // Adds a new user, and returns the new object;
+    add(user) {
+        return this.db.one(sql.add, [user.name, user.email, user.sessionToken, user.passwordDigest]);
+    }
+
+    // Tries to delete a user by id, and returns the number of records deleted;
+    remove(id) {
+        return this.db.result('DELETE FROM users WHERE id = $1', +id, r => r.rowCount);
+    }
+
+    // Returns all user records;
+    all() {
+        return this.db.any('SELECT * FROM users');
+    }
+
+    // Returns the total number of users;
+    total() {
+        return this.db.one('SELECT count(*) FROM users', [], a => +a.count);
+    }
 }
