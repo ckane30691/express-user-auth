@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isTest = process.env.NODE_ENV === 'test'
 
@@ -16,13 +15,6 @@ module.exports = {
     publicPath : '/'
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-          template : './views/static_pages/index.pug',
-          inject   : true
-    })
-  ].filter(p => !!p),
-
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
@@ -37,12 +29,7 @@ module.exports = {
             exclude : /node_modules/,
             options : {presets: ['es2015', 'react']},
             include : path.join(__dirname, 'frontend')
-        },
-        {
-            test: /\.pug$/,
-            include: path.join(__dirname, 'views'),
-            loaders: [ 'pug-loader' ]
-        },
+        }
     ]
   }
 };
