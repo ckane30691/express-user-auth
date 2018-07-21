@@ -1,13 +1,7 @@
-const promise = require('bluebird');
-
 const models = require('../app/models'); // loading all repositories
 
 // pg-promise initialization options:
 const initOptions = {
-
-    // Use a custom promise library, instead of the default ES6 Promise:
-    promiseLib: promise,
-
     // Extending the database protocol with our custom repositories;
     // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
     extend(obj, dc) {

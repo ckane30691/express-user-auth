@@ -1,5 +1,5 @@
-const userController = require('../controllers').userController;
-const sessionController = require('../controllers').sessionController;
+const userController = require('./controllers').userController;
+const sessionController = require('./controllers').sessionController;
 
 module.exports = function(app) {
   //root route
