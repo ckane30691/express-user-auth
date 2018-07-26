@@ -1,5 +1,5 @@
 const db = require('../../db');
-const createJWToken = require('../config/auth').createJWToken;
+const createJWToken = require('../../config/auth').createJWToken;
 
 module.exports = {
   create(req, res) {
