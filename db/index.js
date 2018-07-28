@@ -11,7 +11,7 @@ const initOptions = {
         // Do not use 'require()' here, because this event occurs for every task
         // and transaction being executed, which should be as fast as possible.
         obj.users = new models.Users(obj, pgp);
-        obj.groups = new models.Groups(obj, pgp);
+        
     }
 };
 
